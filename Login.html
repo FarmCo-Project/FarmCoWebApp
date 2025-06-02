@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FarmCo Login</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    function handleLogin(event) {
+      event.preventDefault();
+      const role = document.getElementById('role').value;
+
+      if (role === 'farmer') {
+        window.location.href = 'Farmer-dashboard.html';
+      } else if (role === 'customer') {
+        window.location.href = 'Customer-dashboard.html';
+      } else {
+        alert('Please select a role.');
+      }
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Login to FarmCo</h1>
+  </header>
+
+  <main>
+    <section>
+      <form onsubmit="handleLogin(event)">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label for="role">Select Role:</label><br>
+        <select id="role" name="role" required>
+          <option value="">--Select--</option>
+          <option value="farmer">Farmer</option>
+          <option value="customer">Customer</option>
+        </select><br><br>
+
+        <button type="submit">Login</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
