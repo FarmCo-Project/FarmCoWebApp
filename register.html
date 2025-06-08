@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - FarmCo</title>
+  <link rel="stylesheet" href="register.css">
+</head>
+<body>
+  <!-- Main registration container with centered logo -->
+  <div class="auth-container">
+    <div class="logo-section">
+      <img src="logo.png" alt="FarmCo - For all your Commercial Agricultural Needs" class="auth-logo" />
+      <h1>Join FarmCo</h1>
+      <p>Start your agricultural journey with us</p>
+    </div>
+
+    <div class="form-container">
+      <h2>Create Account</h2>
+    
+    <form class="form" id="registerForm">
+      <!-- Account type selection - important for different user permissions -->
+      <div class="form-group">
+        <label for="accountType">Account Type</label>
+        <select id="accountType" name="accountType" required>
+          <option value="">Select account type</option>
+          <option value="customer">Customer</option>
+          <option value="farmer">Farmer</option>
+        </select>
+      </div>
+
+      <!-- Basic user information fields -->
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" name="fullName" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required />
+      </div>
+      
+      <!-- Password fields with confirmation -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required />
+      </div>
+      
+      <button type="submit">Register</button>
+    </form>
+    
+      <!-- Link back to login for existing users -->
+      <p class="auth-link">
+        Already have an account? <a href="Login.html">Sign In</a>
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 FarmCo. All rights reserved.
+  </footer>
+
+  <script>
+    // Handle new user registration
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Check if passwords match before proceeding
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      
+      if (password !== confirmPassword) {
+        alert('Passwords do not match!');
+        return;
+      }
+      
+      // Collect all form data for the new user
+      const formData = {
+        accountType: document.getElementById('accountType').value,
+        fullName: document.getElementById('fullName').value,
+        email: document.getElementById('email').value,
+        username: document.getElementById('username').value,
+        password: password
+      };
+      
+      // Make sure all required fields are filled
+      if (formData.accountType && formData.fullName && formData.email && formData.username && formData.password) {
+        // Save user data (in a real app, this would go to a server)
+        localStorage.setItem('registeredUser', JSON.stringify(formData));
+        
+        // Let user know registration worked and redirect to login
+        alert('Registration successful! Please login.');
+        window.location.href = 'Login.html';
+      } else {
+        alert('Please fill in all fields');
+      }
+    });
+  </script>
+</body>
+</html> 

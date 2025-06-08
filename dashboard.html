@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - FarmCo</title>
+  <link rel="stylesheet" href="dashboard.css"/>
+</head>
+<body>
+  <!-- Dashboard header with navigation menu -->
+  <header>
+    <div class="header-container">
+      <a href="dashboard.html" class="logo">
+        <img src="logo.png" alt="FarmCo - For all your Commercial Agricultural Needs" />
+      </a>
+      <nav class="navbar">
+        <a href="dashboard.html" class="nav-link active">Dashboard</a>
+        <a href="Profile.html" class="nav-link">Profile</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Check if user is authenticated before showing content -->
+    <div id="authenticated-content" style="display: none;">
+      <div class="page-header">
+        <h1>Dashboard</h1>
+        <p>Welcome to your farm marketplace dashboard</p>
+      </div>
+
+      <!-- Split the dashboard into two main sections -->
+      <div class="dashboard-grid">
+        <!-- Left side: Product management form -->
+        <div class="add-product-section">
+          <h2>Add New Product</h2>
+          <form class="form" id="addProductForm">
+            <div class="form-group">
+              <label for="productName">Product Name</label>
+              <input type="text" id="productName" name="productName" required />
+            </div>
+            
+            <div class="form-group">
+              <label for="category">Category</label>
+              <select id="category" name="category" required>
+                <option value="">Select Category</option>
+                <option value="vegetables">Vegetables</option>
+                <option value="fruits">Fruits</option>
+                <option value="grains">Grains</option>
+                <option value="dairy">Dairy</option>
+                <option value="meat">Meat</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="quantity">Quantity</label>
+              <input type="number" id="quantity" name="quantity" required />
+            </div>
+            
+            <div class="form-group">
+              <label for="unit">Unit</label>
+              <select id="unit" name="unit" required>
+                <option value="">Select Unit</option>
+                <option value="kg">Kilograms</option>
+                <option value="lbs">Pounds</option>
+                <option value="pieces">Pieces</option>
+                <option value="bunches">Bunches</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="price">Price per Unit ($)</label>
+              <input type="number" id="price" name="price" step="0.01" required />
+            </div>
+            
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea id="description" name="description" rows="3"></textarea>
+            </div>
+            
+            <button type="submit">Add Product</button>
+          </form>
+        </div>
+
+        <!-- Right side: Product listings table -->
+        <div class="products-section">
+          <h2>Your Products</h2>
+          <div class="table-container">
+            <table class="products-table">
+              <thead>
+                <tr>
+                  <th>Product Name</th>
+                  <th>Category</th>
+                  <th>Quantity</th>
+                  <th>Price/Unit</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="productsTableBody">
+                <!-- Products will be dynamically added here -->
+                <tr>
+                  <td colspan="5" class="no-products">No products available. Add your first product using the form.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Show this message if user isn't logged in -->
+    <div id="unauthenticated-content" style="display: block;">
+      <div class="access-restricted">
+        <h2>Access Restricted</h2>
+        <p>Please <a href="Login.html">login</a> to access the dashboard.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 FarmCo. All rights reserved.
+  </footer>
+
+  <script>
+    // Check if user is logged in when page loads
+    if (sessionStorage.getItem('authenticated') === 'true' || localStorage.getItem('userLoggedIn') === 'true') {
+      // Show the dashboard content
+      document.getElementById('authenticated-content').style.display = 'block';
+      document.getElementById('unauthenticated-content').style.display = 'none';
+      
+      // Load any existing products from storage
+      loadProducts();
+    }
+    
+    // Handle adding new products to the marketplace
+    document.getElementById('addProductForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get all the product details from the form
+      const productData = {
+        id: Date.now(), // Simple ID generation using timestamp
+        name: document.getElementById('productName').value,
+        category: document.getElementById('category').value,
+        quantity: document.getElementById('quantity').value,
+        unit: document.getElementById('unit').value,
+        price: document.getElementById('price').value,
+        description: document.getElementById('description').value,
+        dateAdded: new Date().toLocaleDateString()
+      };
+      
+      // Save the product to browser storage
+      let products = JSON.parse(localStorage.getItem('products')) || [];
+      products.push(productData);
+      localStorage.setItem('products', JSON.stringify(products));
+      
+      // Refresh the products table to show the new item
+      loadProducts();
+      
+      // Clear the form for the next product entry
+      document.getElementById('addProductForm').reset();
+      
+      alert('Product added successfully!');
+    });
+    
+    // Load and display all products in the table
+    function loadProducts() {
+      const products = JSON.parse(localStorage.getItem('products')) || [];
+      const tableBody = document.getElementById('productsTableBody');
+      
+      if (products.length === 0) {
+        // Show message when no products exist
+        tableBody.innerHTML = '<tr><td colspan="5" class="no-products">No products available. Add your first product using the form.</td></tr>';
+      } else {
+        // Build table rows for each product
+        tableBody.innerHTML = products.map(product => `
+          <tr>
+            <td>${product.name}</td>
+            <td>${product.category}</td>
+            <td>${product.quantity} ${product.unit}</td>
+            <td>$${product.price}</td>
+            <td>
+              <button onclick="deleteProduct(${product.id})" class="delete-btn">Delete</button>
+            </td>
+          </tr>
+        `).join('');
+      }
+    }
+    
+    // Remove a product from the marketplace
+    function deleteProduct(productId) {
+      if (confirm('Are you sure you want to delete this product?')) {
+        let products = JSON.parse(localStorage.getItem('products')) || [];
+        products = products.filter(product => product.id !== productId);
+        localStorage.setItem('products', JSON.stringify(products));
+        
+        // Refresh the table to reflect the deletion
+        loadProducts();
+      }
+    }
+  </script>
+</body>
+</html>

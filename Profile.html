@@ -3,80 +3,248 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Profile</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Profile - FarmCo</title>
+  <link rel="stylesheet" href="profile.css" />
 </head>
 <body>
-  <div class="container">
-    <h2>My Profile</h2>
+  <!-- Profile page header with navigation -->
+  <header>
+    <div class="header-container">
+      <a href="dashboard.html" class="logo">
+        <img src="logo.png" alt="FarmCo - For all your Commercial Agricultural Needs" />
+      </a>
+      <nav class="navbar">
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="Profile.html" class="nav-link active">Profile</a>
+      </nav>
+    </div>
+  </header>
 
-    <div id="profileView">
-      <p><strong>Full Name:</strong> <span id="viewName"></span></p>
-      <p><strong>Email:</strong> <span id="viewEmail"></span></p>
-      <p><strong>Phone:</strong> <span id="viewPhone"></span></p>
-      <p><strong>Location:</strong> <span id="viewLocation"></span></p>
-      <button onclick="enterEditMode()">Edit Profile</button>
+  <main>
+    <!-- Only show profile content if user is authenticated -->
+    <div id="authenticated-content" style="display: none;">
+      <div class="page-header">
+        <h1>Profile</h1>
+        <p>Manage your account information and settings</p>
+      </div>
+
+      <div class="profile-container">
+        <!-- User information display and edit form -->
+        <div class="profile-card">
+          <h2>Personal Information</h2>
+          
+          <form class="form" id="profileForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" required />
+              </div>
+              
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required />
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+              
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" />
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="address">Address</label>
+              <textarea id="address" name="address" rows="3"></textarea>
+            </div>
+            
+            <!-- Account type display (usually shouldn't be changed) -->
+            <div class="form-group">
+              <label for="accountType">Account Type</label>
+              <select id="accountType" name="accountType" disabled>
+                <option value="farmer">Farmer</option>
+                <option value="customer">Customer</option>
+              </select>
+              <small>Contact support to change account type</small>
+            </div>
+            
+            <div class="form-actions">
+              <button type="submit" class="btn-primary">Update Profile</button>
+              <button type="button" onclick="resetForm()" class="btn-secondary">Reset</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Account settings and actions -->
+        <div class="settings-card">
+          <h2>Account Settings</h2>
+          
+          <!-- Password change section -->
+          <div class="setting-section">
+            <h3>Change Password</h3>
+            <form class="form" id="passwordForm">
+              <div class="form-group">
+                <label for="currentPassword">Current Password</label>
+                <input type="password" id="currentPassword" name="currentPassword" required />
+              </div>
+              
+              <div class="form-group">
+                <label for="newPassword">New Password</label>
+                <input type="password" id="newPassword" name="newPassword" required />
+              </div>
+              
+              <div class="form-group">
+                <label for="confirmNewPassword">Confirm New Password</label>
+                <input type="password" id="confirmNewPassword" name="confirmNewPassword" required />
+              </div>
+              
+              <button type="submit">Change Password</button>
+            </form>
+          </div>
+
+          <!-- Account actions -->
+          <div class="setting-section">
+            <h3>Account Actions</h3>
+            
+            <div class="action-buttons">
+              <!-- Log out button - takes user back to login -->
+              <button onclick="logout()" class="btn-logout">Logout</button>
+              
+              <!-- Danger zone for account deletion -->
+              <button onclick="deleteAccount()" class="btn-danger">Delete Account</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <form id="profileForm" class="form" style="display: none;">
-      <input type="text" id="fullName" placeholder="Full Name" />
-      <input type="email" id="email" placeholder="Email" />
-      <input type="text" id="phone" placeholder="Phone" />
-      <input type="text" id="location" placeholder="Location" />
-      <input type="password" id="password" placeholder="New Password" />
-      <input type="password" id="confirmPassword" placeholder="Confirm Password" />
-      <p id="passwordError" style="color: red; display: none;">Passwords do not match!</p>
-      <button type="submit">Save Changes</button>
-      <button type="button" onclick="cancelEdit()">Cancel</button>
-    </form>
-  </div>
+    <!-- Show this if user is not logged in -->
+    <div id="unauthenticated-content" style="display: block;">
+      <div class="access-restricted">
+        <h2>Access Restricted</h2>
+        <p>Please <a href="Login.html">login</a> to access your profile.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 FarmCo. All rights reserved.
+  </footer>
 
   <script>
-    const user = JSON.parse(localStorage.getItem("user")) || {};
-
-    function showProfile() {
-      document.getElementById("viewName").textContent = user.fullName || "";
-      document.getElementById("viewEmail").textContent = user.email || "";
-      document.getElementById("viewPhone").textContent = user.phone || "";
-      document.getElementById("viewLocation").textContent = user.location || "";
+    // Check authentication status when page loads
+    if (sessionStorage.getItem('authenticated') === 'true' || localStorage.getItem('userLoggedIn') === 'true') {
+      // User is logged in - show profile content
+      document.getElementById('authenticated-content').style.display = 'block';
+      document.getElementById('unauthenticated-content').style.display = 'none';
+      
+      // Load existing user data into the form
+      loadUserProfile();
     }
-
-    function enterEditMode() {
-      document.getElementById("profileView").style.display = "none";
-      document.getElementById("profileForm").style.display = "block";
-
-      document.getElementById("fullName").value = user.fullName || "";
-      document.getElementById("email").value = user.email || "";
-      document.getElementById("phone").value = user.phone || "";
-      document.getElementById("location").value = user.location || "";
-      document.getElementById("password").value = ""; 
+    
+    // Load user information from storage and populate the form
+    function loadUserProfile() {
+      const userData = JSON.parse(localStorage.getItem('currentUser')) || {};
+      
+      // Fill in the form with saved user data
+      if (userData.username) document.getElementById('username').value = userData.username;
+      if (userData.email) document.getElementById('email').value = userData.email;
+      if (userData.role) document.getElementById('accountType').value = userData.role;
+      
+      // Load additional profile data if it exists
+      const profileData = JSON.parse(localStorage.getItem('userProfile')) || {};
+      if (profileData.fullName) document.getElementById('fullName').value = profileData.fullName;
+      if (profileData.phone) document.getElementById('phone').value = profileData.phone;
+      if (profileData.address) document.getElementById('address').value = profileData.address;
     }
-
-    function cancelEdit() {
-      document.getElementById("profileForm").reset();
-      document.getElementById("profileForm").style.display = "none";
-      document.getElementById("profileView").style.display = "block";
-    }
-
-    document.getElementById("profileForm").addEventListener("submit", function (e) {
+    
+    // Handle profile information updates
+    document.getElementById('profileForm').addEventListener('submit', function(e) {
       e.preventDefault();
-
-      user.fullName = document.getElementById("fullName").value;
-      user.email = document.getElementById("email").value;
-      user.phone = document.getElementById("phone").value;
-      user.location = document.getElementById("location").value;
-
-      const newPassword = document.getElementById("password").value;
-      if (newPassword) user.password = newPassword;
-
-      localStorage.setItem("user", JSON.stringify(user));
-      alert("Profile updated!");
-
-      cancelEdit(); 
-      showProfile(); 
+      
+      // Collect updated profile information
+      const profileData = {
+        fullName: document.getElementById('fullName').value,
+        username: document.getElementById('username').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        address: document.getElementById('address').value,
+        accountType: document.getElementById('accountType').value
+      };
+      
+      // Save the updated profile to storage
+      localStorage.setItem('userProfile', JSON.stringify(profileData));
+      
+      // Also update the current user data
+      const currentUser = JSON.parse(localStorage.getItem('currentUser')) || {};
+      currentUser.username = profileData.username;
+      currentUser.email = profileData.email;
+      localStorage.setItem('currentUser', JSON.stringify(currentUser));
+      
+      alert('Profile updated successfully!');
     });
-
-    showProfile();
+    
+    // Handle password change requests
+    document.getElementById('passwordForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const newPassword = document.getElementById('newPassword').value;
+      const confirmPassword = document.getElementById('confirmNewPassword').value;
+      
+      // Make sure new passwords match
+      if (newPassword !== confirmPassword) {
+        alert('New passwords do not match!');
+        return;
+      }
+      
+      // In a real app, you'd verify the current password with the server
+      // For now, just simulate a successful password change
+      alert('Password changed successfully!');
+      
+      // Clear the password form
+      document.getElementById('passwordForm').reset();
+    });
+    
+    // Reset the profile form to original values
+    function resetForm() {
+      loadUserProfile();
+      alert('Form reset to saved values');
+    }
+    
+    // Log the user out and return to login page
+    function logout() {
+      if (confirm('Are you sure you want to logout?')) {
+        // Clear all authentication data
+        sessionStorage.removeItem('authenticated');
+        localStorage.removeItem('userLoggedIn');
+        localStorage.removeItem('currentUser');
+        
+        // Redirect back to login
+        window.location.href = 'Login.html';
+      }
+    }
+    
+    // Delete user account (danger action)
+    function deleteAccount() {
+      if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+        if (confirm('This will permanently delete all your data. Are you absolutely sure?')) {
+          // Clear all user data
+          localStorage.removeItem('userProfile');
+          localStorage.removeItem('currentUser');
+          localStorage.removeItem('userLoggedIn');
+          localStorage.removeItem('products'); // Also remove their products
+          sessionStorage.clear();
+          
+          alert('Account deleted successfully.');
+          window.location.href = 'Login.html';
+        }
+      }
+    }
   </script>
 </body>
 </html>

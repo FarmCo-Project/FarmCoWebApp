@@ -3,42 +3,73 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Login - FarmCo</title>
+  <link rel="stylesheet" href="login.css" />
 </head>
 <body>
-  <div class="container">
-    <h2>Login</h2>
-    <form id="loginForm" class="form">
-      <input type="text" id="username" placeholder="Username" required />
-      <input type="email" id="email" placeholder="Email" required />
-      <input type="password" id="password" placeholder="Password" required />
-      <select id="role">
-        <option value="farmer">Farmer</option>
-        <option value="customer">Customer</option>
-      </select>
+  <!-- Main login container with centered logo -->
+  <div class="auth-container">
+    <div class="logo-section">
+      <img src="logo.png" alt="FarmCo - For all your Commercial Agricultural Needs" class="auth-logo" />
+      <h1>Welcome to FarmCo</h1>
+      <p>Your trusted agricultural marketplace</p>
+    </div>
+
+    <div class="form-container">
+      <h2>Sign In</h2>
+    
+    <form class="form" id="loginForm">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required />
+      </div>
+      
       <button type="submit">Login</button>
     </form>
+    
+      <!-- Link to registration for new users -->
+      <p class="auth-link">
+        Don't have an account? <a href="register.html">Create Account</a>
+      </p>
+    </div>
   </div>
 
+  <footer>
+    &copy; 2025 FarmCo. All rights reserved.
+  </footer>
+
   <script>
-    document.getElementById("loginForm").addEventListener("submit", function (e) {
+    // Handle login form submission
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      const username = document.getElementById("username").value;
-      const email = document.getElementById("email").value;
-      const role = document.getElementById("role").value;
-
-      localStorage.setItem("user", JSON.stringify({ username, email, role }));
-
-      if (role === "farmer") {
-        window.location.href = "Farmer-dashboard.html";
+      
+      // Get form values for validation
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      // Simple validation - just make sure fields aren't empty
+      if (email && password) {
+        // Store authentication state in browser storage
+        sessionStorage.setItem('authenticated', 'true');
+        localStorage.setItem('userLoggedIn', 'true');
+        
+        // Save user info for use in other pages
+        localStorage.setItem('currentUser', JSON.stringify({
+          email: email,
+          loginTime: new Date().toISOString()
+        }));
+        
+        // Take user to the main dashboard
+        window.location.href = 'dashboard.html';
       } else {
-        window.location.href = "Customer-dashboard.html";
+        alert('Please enter both email and password');
       }
     });
   </script>
 </body>
 </html>
-
-<footer>
-  &copy; 2025 FarmCo. All rights reserved.
