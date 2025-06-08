@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Profile</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>My Profile</h2>
+
+    <div id="profileView">
+      <p><strong>Full Name:</strong> <span id="viewName"></span></p>
+      <p><strong>Email:</strong> <span id="viewEmail"></span></p>
+      <p><strong>Phone:</strong> <span id="viewPhone"></span></p>
+      <p><strong>Location:</strong> <span id="viewLocation"></span></p>
+      <button onclick="enterEditMode()">Edit Profile</button>
+    </div>
+
+    <form id="profileForm" class="form" style="display: none;">
+      <input type="text" id="fullName" placeholder="Full Name" />
+      <input type="email" id="email" placeholder="Email" />
+      <input type="text" id="phone" placeholder="Phone" />
+      <input type="text" id="location" placeholder="Location" />
+      <input type="password" id="password" placeholder="New Password" />
+      <input type="password" id="confirmPassword" placeholder="Confirm Password" />
+      <p id="passwordError" style="color: red; display: none;">Passwords do not match!</p>
+      <button type="submit">Save Changes</button>
+      <button type="button" onclick="cancelEdit()">Cancel</button>
+    </form>
+  </div>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem("user")) || {};
+
+    function showProfile() {
+      document.getElementById("viewName").textContent = user.fullName || "";
+      document.getElementById("viewEmail").textContent = user.email || "";
+      document.getElementById("viewPhone").textContent = user.phone || "";
+      document.getElementById("viewLocation").textContent = user.location || "";
+    }
+
+    function enterEditMode() {
+      document.getElementById("profileView").style.display = "none";
+      document.getElementById("profileForm").style.display = "block";
+
+      document.getElementById("fullName").value = user.fullName || "";
+      document.getElementById("email").value = user.email || "";
+      document.getElementById("phone").value = user.phone || "";
+      document.getElementById("location").value = user.location || "";
+      document.getElementById("password").value = ""; 
+    }
+
+    function cancelEdit() {
+      document.getElementById("profileForm").reset();
+      document.getElementById("profileForm").style.display = "none";
+      document.getElementById("profileView").style.display = "block";
+    }
+
+    document.getElementById("profileForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      user.fullName = document.getElementById("fullName").value;
+      user.email = document.getElementById("email").value;
+      user.phone = document.getElementById("phone").value;
+      user.location = document.getElementById("location").value;
+
+      const newPassword = document.getElementById("password").value;
+      if (newPassword) user.password = newPassword;
+
+      localStorage.setItem("user", JSON.stringify(user));
+      alert("Profile updated!");
+
+      cancelEdit(); 
+      showProfile(); 
+    });
+
+    showProfile();
+  </script>
+</body>
+</html>
