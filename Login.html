@@ -1,51 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FarmCo Login</title>
-  <link rel="stylesheet" href="styles.css">
-  <script>
-    function handleLogin(event) {
-      event.preventDefault();
-      const role = document.getElementById('role').value;
-
-      if (role === 'farmer') {
-        window.location.href = 'Farmer-dashboard.html';
-      } else if (role === 'customer') {
-        window.location.href = 'Customer-dashboard.html';
-      } else {
-        alert('Please select a role.');
-      }
-    }
-  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header>
-    <h1>Login to FarmCo</h1>
-  </header>
+  <div class="container">
+    <h2>Login</h2>
+    <form id="loginForm" class="form">
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <select id="role">
+        <option value="farmer">Farmer</option>
+        <option value="customer">Customer</option>
+      </select>
+      <button type="submit">Login</button>
+    </form>
+  </div>
 
-  <main>
-    <section>
-      <form onsubmit="handleLogin(event)">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required><br><br>
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const username = document.getElementById("username").value;
+      const email = document.getElementById("email").value;
+      const role = document.getElementById("role").value;
 
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
+      localStorage.setItem("user", JSON.stringify({ username, email, role }));
 
-        <label for="role">Select Role:</label><br>
-        <select id="role" name="role" required>
-          <option value="">--Select--</option>
-          <option value="farmer">Farmer</option>
-          <option value="customer">Customer</option>
-        </select><br><br>
-
-        <button type="submit">Login</button>
-      </form>
-    </section>
-  </main>
+      if (role === "farmer") {
+        window.location.href = "Farmer-dashboard.html";
+      } else {
+        window.location.href = "Customer-dashboard.html";
+      }
+    });
+  </script>
 </body>
 </html>
+
 <footer>
   &copy; 2025 FarmCo. All rights reserved.
