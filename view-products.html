@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Browse Products - FarmCo</title>
+  <link rel="stylesheet" href="dashboard.css"/>
+  <script src="auth.js"></script>
+</head>
+<body>
+  <!-- Dashboard header with navigation menu -->
+  <header>
+    <div class="header-container">
+      <div class="logo">FarmCo Logo</div>
+      <nav class="navbar">
+        <a href="customer-dashboard.html" class="nav-link">Dashboard</a>
+        <a href="view-products.html" class="nav-link active">View Products</a>
+        <a href="Profile.html" class="nav-link">Profile</a>
+        <a href="Login.html" class="nav-link logout">Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>All Products</h1>
+      <p>Browse fresh products from local farmers</p>
+    </div>
+
+    <!-- Filter and Search Section -->
+    <section class="filters-section">
+      <div class="filters-container">
+        <div class="search-group">
+          <input type="text" placeholder="Search products..." class="search-input" />
+          <button class="search-btn">🔍</button>
+        </div>
+        
+        <div class="filter-group">
+          <select class="filter-select">
+            <option value="">All Categories</option>
+            <option value="vegetables">Vegetables</option>
+            <option value="fruits">Fruits</option>
+            <option value="grains">Grains & Cereals</option>
+            <option value="dairy">Dairy Products</option>
+            <option value="meat">Meat & Poultry</option>
+            <option value="herbs">Herbs & Spices</option>
+          </select>
+          
+          <select class="filter-select">
+            <option value="">Sort by</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="name">Name A-Z</option>
+            <option value="date">Newest First</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Table -->
+    <section class="products-section">
+      <div class="table-container">
+        <table class="products-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Farmer</th>
+              <th>Category</th>
+              <th>Quantity</th>
+              <th>Price/Unit</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="product-cell">
+                <div class="product-info">
+                  <span class="product-icon">🍅</span>
+                  <div>
+                    <strong>Fresh Tomatoes</strong>
+                    <small>Organic, locally grown</small>
+                  </div>
+                </div>
+              </td>
+              <td>Farmer John</td>
+              <td><span class="category-tag vegetables">Vegetables</span></td>
+              <td>50 kg</td>
+              <td>KSh 120/kg</td>
+              <td>
+                <div class="action-buttons">
+                  <button class="btn-action view">View</button>
+                  <button class="btn-action cart">Add to Cart</button>
+                </div>
+              </td>
+            </tr>
+            
+            <tr>
+              <td class="product-cell">
+                <div class="product-info">
+                  <span class="product-icon">🥕</span>
+                  <div>
+                    <strong>Organic Carrots</strong>
+                    <small>Fresh from the farm</small>
+                  </div>
+                </div>
+              </td>
+              <td>Farmer Mary</td>
+              <td><span class="category-tag vegetables">Vegetables</span></td>
+              <td>30 kg</td>
+              <td>KSh 80/kg</td>
+              <td>
+                <div class="action-buttons">
+                  <button class="btn-action view">View</button>
+                  <button class="btn-action cart">Add to Cart</button>
+                </div>
+              </td>
+            </tr>
+            
+            <tr>
+              <td class="product-cell">
+                <div class="product-info">
+                  <span class="product-icon">🌽</span>
+                  <div>
+                    <strong>Sweet Corn</strong>
+                    <small>Harvest fresh</small>
+                  </div>
+                </div>
+              </td>
+              <td>Farmer Peter</td>
+              <td><span class="category-tag vegetables">Vegetables</span></td>
+              <td>100 pieces</td>
+              <td>KSh 60/piece</td>
+              <td>
+                <div class="action-buttons">
+                  <button class="btn-action view">View</button>
+                  <button class="btn-action cart">Add to Cart</button>
+                </div>
+              </td>
+            </tr>
+            
+            <tr>
+              <td class="product-cell">
+                <div class="product-info">
+                  <span class="product-icon">🍌</span>
+                  <div>
+                    <strong>Ripe Bananas</strong>
+                    <small>Sweet and fresh</small>
+                  </div>
+                </div>
+              </td>
+              <td>Farmer Jane</td>
+              <td><span class="category-tag fruits">Fruits</span></td>
+              <td>80 bunches</td>
+              <td>KSh 40/bunch</td>
+              <td>
+                <div class="action-buttons">
+                  <button class="btn-action view">View</button>
+                  <button class="btn-action cart">Add to Cart</button>
+                </div>
+              </td>
+            </tr>
+            
+            <tr>
+              <td class="product-cell">
+                <div class="product-info">
+                  <span class="product-icon">🥛</span>
+                  <div>
+                    <strong>Fresh Milk</strong>
+                    <small>From grass-fed cows</small>
+                  </div>
+                </div>
+              </td>
+              <td>Farmer David</td>
+              <td><span class="category-tag dairy">Dairy</span></td>
+              <td>20 litres</td>
+              <td>KSh 60/litre</td>
+              <td>
+                <div class="action-buttons">
+                  <button class="btn-action view">View</button>
+                  <button class="btn-action cart">Add to Cart</button>
+                </div>
+              </td>
+            </tr>
+            
+            <tr>
+              <td class="product-cell">
+                <div class="product-info">
+                  <span class="product-icon">🥬</span>
+                  <div>
+                    <strong>Fresh Lettuce</strong>
+                    <small>Crisp and green</small>
+                  </div>
+                </div>
+              </td>
+              <td>Farmer Sarah</td>
+              <td><span class="category-tag vegetables">Vegetables</span></td>
+              <td>25 heads</td>
+              <td>KSh 50/head</td>
+              <td>
+                <div class="action-buttons">
+                  <button class="btn-action view">View</button>
+                  <button class="btn-action cart">Add to Cart</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Pagination -->
+    <section class="pagination-section">
+      <div class="pagination">
+        <button class="page-btn" disabled>« Previous</button>
+        <button class="page-btn active">1</button>
+        <button class="page-btn">2</button>
+        <button class="page-btn">3</button>
+        <button class="page-btn">Next »</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 FarmCo. All rights reserved.
+  </footer>
+</body>
+</html>  

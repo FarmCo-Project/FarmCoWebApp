@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order Tracking - FarmCo</title>
+  <link rel="stylesheet" href="dashboard.css"/>
+  <link rel="stylesheet" href="farmer-orders.css"/>
+</head>
+<body>
+  <!-- Dashboard header with navigation menu -->
+  <header>
+    <div class="header-container">
+      <div class="logo">FarmCo Logo</div>
+      <nav class="navbar">
+        <a href="farmer-dashboard.html" class="nav-link">Dashboard</a>
+        <a href="add-product.html" class="nav-link">Add Product</a>
+        <a href="view-products.html" class="nav-link">View Products</a>
+        <a href="farmer-orders.html" class="nav-link active">Orders</a>
+        <a href="Profile.html" class="nav-link">Profile</a>
+        <a href="Login.html" class="nav-link logout">Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>Order Management</h1>
+      <p>Track and manage your customer orders</p>
+    </div>
+
+    <!-- Order Filters -->
+    <section class="order-filters">
+      <div class="filter-group">
+        <label for="status-filter">Status:</label>
+        <select id="status-filter">
+          <option value="all">All Orders</option>
+          <option value="pending">Pending</option>
+          <option value="processing">Processing</option>
+          <option value="shipped">Shipped</option>
+          <option value="delivered">Delivered</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="date-filter">Date Range:</label>
+        <select id="date-filter">
+          <option value="all">All Time</option>
+          <option value="today">Today</option>
+          <option value="week">This Week</option>
+          <option value="month">This Month</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Orders Table -->
+    <section class="orders-section">
+      <div class="orders-table-container">
+        <table class="orders-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Products</th>
+              <th>Total</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>#ORD-001</td>
+              <td>Jane Smith</td>
+              <td>5kg Tomatoes, 2kg Potatoes</td>
+              <td>KSh 1,200</td>
+              <td>2024-03-15</td>
+              <td><span class="status-badge pending">Pending</span></td>
+              <td>
+                <button class="action-btn view">View</button>
+                <button class="action-btn update">Update</button>
+              </td>
+            </tr>
+            <tr>
+              <td>#ORD-002</td>
+              <td>Mike Johnson</td>
+              <td>3kg Carrots, 1kg Onions</td>
+              <td>KSh 850</td>
+              <td>2024-03-14</td>
+              <td><span class="status-badge processing">Processing</span></td>
+              <td>
+                <button class="action-btn view">View</button>
+                <button class="action-btn update">Update</button>
+              </td>
+            </tr>
+            <tr>
+              <td>#ORD-003</td>
+              <td>Sarah Williams</td>
+              <td>2kg Spinach, 4kg Potatoes</td>
+              <td>KSh 1,500</td>
+              <td>2024-03-13</td>
+              <td><span class="status-badge shipped">Shipped</span></td>
+              <td>
+                <button class="action-btn view">View</button>
+                <button class="action-btn update">Update</button>
+              </td>
+            </tr>
+            <tr>
+              <td>#ORD-004</td>
+              <td>David Brown</td>
+              <td>6kg Tomatoes, 3kg Carrots</td>
+              <td>KSh 2,100</td>
+              <td>2024-03-12</td>
+              <td><span class="status-badge delivered">Delivered</span></td>
+              <td>
+                <button class="action-btn view">View</button>
+                <button class="action-btn update">Update</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 FarmCo. All rights reserved.
+  </footer>
+</body>
+</html> 

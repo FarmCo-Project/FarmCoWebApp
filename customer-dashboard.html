@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Customer Dashboard - FarmCo</title>
+  <link rel="stylesheet" href="dashboard.css"/>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="logo">FarmCo
+        <span class="logo-tagline">Connecting Farmers and Customers</span>
+      </div>
+      <nav class="navbar">
+        <a href="customer-dashboard.html" class="nav-link active">Dashboard</a>
+        <a href="view-products.html" class="nav-link">Browse Products</a>
+        <a href="customer-profile.html" class="nav-link">Profile</a>
+        <a href="Login.html" class="nav-link logout">Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>Welcome, Customer Ian</h1>
+      <p>Discover fresh products from local farmers</p>
+    </div>
+
+    <!-- Customer Stats Cards -->
+    <section class="stats-section">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">🛒</div>
+          <div class="stat-content">
+            <h3>Total Orders</h3>
+            <p class="stat-value">12</p>
+            <span class="stat-change positive">+2 this month</span>
+          </div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-icon">💰</div>
+          <div class="stat-content">
+            <h3>Amount Spent</h3>
+            <p class="stat-value">KSh 3,450</p>
+            <span class="stat-change neutral">This year</span>
+          </div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-icon">🚚</div>
+          <div class="stat-content">
+            <h3>Pending Orders</h3>
+            <p class="stat-value">2</p>
+            <span class="stat-change neutral">In delivery</span>
+          </div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-icon">⭐</div>
+          <div class="stat-content">
+            <h3>Favorite Farmers</h3>
+            <p class="stat-value">5</p>
+            <span class="stat-change positive">Following</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="featured-products">
+      <h2>Featured Products</h2>
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image">🍅</div>
+          <div class="product-info">
+            <h3>Fresh Tomatoes</h3>
+            <p class="farmer-name">From Farmer John</p>
+            <p class="product-price">KSh 120/kg</p>
+            <a href="#" class="btn-add-to-cart">Add to Cart</a>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="product-image">🥕</div>
+          <div class="product-info">
+            <h3>Organic Carrots</h3>
+            <p class="farmer-name">From Farmer Mary</p>
+            <p class="product-price">KSh 80/kg</p>
+            <a href="#" class="btn-add-to-cart">Add to Cart</a>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="product-image">🌽</div>
+          <div class="product-info">
+            <h3>Sweet Corn</h3>
+            <p class="farmer-name">From Farmer Peter</p>
+            <p class="product-price">KSh 60/piece</p>
+            <a href="#" class="btn-add-to-cart">Add to Cart</a>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="product-image">🥬</div>
+          <div class="product-info">
+            <h3>Fresh Lettuce</h3>
+            <p class="farmer-name">From Farmer Jane</p>
+            <p class="product-price">KSh 50/head</p>
+            <a href="#" class="btn-add-to-cart">Add to Cart</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="quick-actions">
+      <h2>Quick Actions</h2>
+      <div class="actions-grid">
+        <a href="view-products.html" class="action-card">
+          <div class="action-icon">🛍️</div>
+          <h3>Browse All Products</h3>
+          <p>Explore our full marketplace</p>
+        </a>
+        
+        <a href="#" class="action-card">
+          <div class="action-icon">📋</div>
+          <h3>My Orders</h3>
+          <p>Track your order history</p>
+        </a>
+        
+        <a href="#" class="action-card">
+          <div class="action-icon">❤️</div>
+          <h3>Wishlist</h3>
+          <p>View saved products</p>
+        </a>
+        
+        <a href="customer-profile.html" class="action-card">
+          <div class="action-icon">⚙️</div>
+          <h3>Account Settings</h3>
+          <p>Update your profile information</p>
+        </a>
+      </div>
+    </section>
+
+    
+    <section class="recent-activity">
+      <h2>Recent Orders</h2>
+      <div class="activity-list">
+        <div class="activity-item">
+          <div class="activity-icon">📦</div>
+          <div class="activity-content">
+            <h4>Order #1234 Delivered</h4>
+            <p>Fresh vegetables from Farmer Brian</p>
+            <span class="activity-time">Yesterday</span>
+          </div>
+        </div>
+        
+        <div class="activity-item">
+          <div class="activity-icon">🚚</div>
+          <div class="activity-content">
+            <h4>Order #1235 In Transit</h4>
+            <p>Organic fruits from Farmer John</p>
+            <span class="activity-time">2 days ago</span>
+          </div>
+        </div>
+        
+        <div class="activity-item">
+          <div class="activity-icon">✅</div>
+          <div class="activity-content">
+            <h4>Order #1236 Confirmed</h4>
+            <p>Dairy products from Farmer Stacy</p>
+            <span class="activity-time">3 days ago</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 FarmCo. All rights reserved.
+  </footer>
+</body>
+</html> 

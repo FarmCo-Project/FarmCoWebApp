@@ -18,15 +18,28 @@
     <div class="form-container">
       <h2>Create Account</h2>
     
-    <form class="form" id="registerForm">
-      <!-- Account type selection - important for different user permissions -->
+    <form class="form" action="Login.html" method="get">
+     
       <div class="form-group">
-        <label for="accountType">Account Type</label>
-        <select id="accountType" name="accountType" required>
-          <option value="">Select account type</option>
-          <option value="customer">Customer</option>
-          <option value="farmer">Farmer</option>
-        </select>
+        <label>Register as:</label>
+        <div class="role-selection">
+          <div class="role-option">
+            <input type="radio" id="farmer" name="role" value="farmer" required>
+            <label for="farmer" class="role-label">
+              <span class="role-icon">🧑‍🌾</span>
+              <span class="role-text">Farmer</span>
+              <span class="role-desc">Sell your products</span>
+            </label>
+          </div>
+          <div class="role-option">
+            <input type="radio" id="customer" name="role" value="customer" required>
+            <label for="customer" class="role-label">
+              <span class="role-icon">🛒</span>
+              <span class="role-text">Customer</span>
+              <span class="role-desc">Buy fresh produce</span>
+            </label>
+          </div>
+        </div>
       </div>
 
       <!-- Basic user information fields -->
@@ -70,41 +83,6 @@
     &copy; 2025 FarmCo. All rights reserved.
   </footer>
 
-  <script>
-    // Handle new user registration
-    document.getElementById('registerForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      // Check if passwords match before proceeding
-      const password = document.getElementById('password').value;
-      const confirmPassword = document.getElementById('confirmPassword').value;
-      
-      if (password !== confirmPassword) {
-        alert('Passwords do not match!');
-        return;
-      }
-      
-      // Collect all form data for the new user
-      const formData = {
-        accountType: document.getElementById('accountType').value,
-        fullName: document.getElementById('fullName').value,
-        email: document.getElementById('email').value,
-        username: document.getElementById('username').value,
-        password: password
-      };
-      
-      // Make sure all required fields are filled
-      if (formData.accountType && formData.fullName && formData.email && formData.username && formData.password) {
-        // Save user data (in a real app, this would go to a server)
-        localStorage.setItem('registeredUser', JSON.stringify(formData));
-        
-        // Let user know registration worked and redirect to login
-        alert('Registration successful! Please login.');
-        window.location.href = 'Login.html';
-      } else {
-        alert('Please fill in all fields');
-      }
-    });
-  </script>
+
 </body>
 </html> 
