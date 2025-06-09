@@ -1,0 +1,140 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+header {
+  background-color: #4CAF50;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+.final_logo {
+  width: 80px;         
+  position: absolute;   
+  top: 10px;
+  left: 10px;
+  z-index: 1000;        
+}
+
+
+nav {
+  background-color: #333;
+  padding: 0.5rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  /ransition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #575757;
+  border-radius: 4px;
+}
+
+main {
+  padding: 2rem;
+}
+
+section {
+  background-color: white;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form {
+  background-color: white;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+form input,
+form select,
+form button {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+form button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #45a049;
+} 
+
+.bg-green {
+  background-color: #4CAF50;
+}
+
+body {
+  margin: 0; /* Remove default margin */
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Aligns logo at the top */
+  padding: 1rem;
+  height: 50%; /* Adjust height to allow more space for the logo */
+}
+
+.final_logo {
+  width: auto; /* Allow the width to scale */
+  max-width: 15rem; /* Increase max-width for larger logo */
+  height: auto; /* Maintain aspect ratio */
+  max-height: 100%; /* Use full height of the container */
+  display: block;
+}
+
+.nav-title {
+  display: flex;
+  justify-content: center; /* Center the title */
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  text-align: center; /* Center text */
+  font-size: 1rem; /* Increase font size for better visibility */
+}
+
+/* .logo-container {
+  max-width: 5rem;
+  flex-shrink: 0;
+}
+
+.final_logo {
+  width: 100%;
+  height: auto;
+  display: block;
+}  */
+
+
