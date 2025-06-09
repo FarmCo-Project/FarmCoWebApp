@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Product - FarmCo</title>
+  <link rel="stylesheet" href="dashboard.css"/>
+</head>
+<body>
+  <!-- Dashboard header with navigation menu -->
+  <header>
+    <div class="header-container">
+      <div class="logo">FarmCo
+        <span class="logo-tagline">Connecting Farmers and Customers</span>
+      </div>
+      <nav class="navbar">
+        <a href="farmer-dashboard.html" class="nav-link">Dashboard</a>
+        <a href="add-product.html" class="nav-link active">Add Product</a>
+        <a href="view-products.html" class="nav-link">View Products</a>
+        <a href="Profile.html" class="nav-link">Profile</a>
+        <a href="Login.html" class="nav-link logout">Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>Add New Product</h1>
+      <p>List your farm products for sale</p>
+    </div>
+
+    <div class="form-container">
+      <form class="product-form" action="view-products.html" method="get">
+        <div class="form-grid">
+          <div class="form-section">
+            <h3>Product Information</h3>
+            
+            <div class="form-group">
+              <label for="productName">Product Name *</label>
+              <input type="text" id="productName" name="productName" required 
+                     placeholder="e.g., Fresh Tomatoes" />
+            </div>
+            
+            <div class="form-group">
+              <label for="category">Category *</label>
+              <select id="category" name="category" required>
+                <option value="">Select Category</option>
+                <option value="vegetables">Vegetables</option>
+                <option value="fruits">Fruits</option>
+                <option value="grains">Grains & Cereals</option>
+                <option value="dairy">Dairy Products</option>
+                <option value="meat">Meat & Poultry</option>
+                <option value="herbs">Herbs & Spices</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea id="description" name="description" rows="4" 
+                        placeholder="Describe your product quality, farming methods, etc."></textarea>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Pricing & Quantity</h3>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="quantity">Quantity Available *</label>
+                <input type="number" id="quantity" name="quantity" required min="1" 
+                       placeholder="e.g., 50" />
+              </div>
+              
+              <div class="form-group">
+                <label for="unit">Unit *</label>
+                <select id="unit" name="unit" required>
+                  <option value="">Select Unit</option>
+                  <option value="kg">Kilograms (kg)</option>
+                  <option value="g">Grams (g)</option>
+                  <option value="pieces">Pieces</option>
+                  <option value="bunches">Bunches</option>
+                  <option value="litres">Litres</option>
+                  <option value="bags">Bags</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="price">Price per Unit (KSh) *</label>
+              <input type="number" id="price" name="price" step="0.01" required min="0" 
+                     placeholder="e.g., 120.00" />
+            </div>
+            
+            <div class="form-group">
+              <label for="minimumOrder">Minimum Order Quantity</label>
+              <input type="number" id="minimumOrder" name="minimumOrder" min="1" 
+                     placeholder="e.g., 5 (optional)" />
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Additional Details</h3>
+            
+            <div class="form-group">
+              <label for="imageUrl">Product Image URL</label>
+              <input type="url" id="imageUrl" name="imageUrl" 
+                     placeholder="https://example.com/product-image.jpg" />
+            </div>
+            
+            <div class="form-group">
+              <label for="harvestDate">Harvest Date</label>
+              <input type="date" id="harvestDate" name="harvestDate" />
+            </div>
+            
+            <div class="form-group">
+              <label for="expiryDate">Best Before Date</label>
+              <input type="date" id="expiryDate" name="expiryDate" />
+            </div>
+            
+            <div class="form-group checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="organic" name="organic" />
+                <span class="checkmark"></span>
+                Organic Product
+              </label>
+            </div>
+            
+            <div class="form-group checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="localDelivery" name="localDelivery" />
+                <span class="checkmark"></span>
+                Local Delivery Available
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" onclick="window.history.back()" class="btn-secondary">Cancel</button>
+          <button type="submit" class="btn-primary">Add Product</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 FarmCo. All rights reserved.
+  </footer>
+</body>
+</html> 

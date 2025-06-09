@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Farmer Dashboard - FarmCo</title>
+  <link rel="stylesheet" href="dashboard.css"/>
+</head>
+<body>
+  <!-- Dashboard header with navigation menu -->
+  <header>
+    <div class="header-container">
+      <div class="logo">FarmCo
+        <span class="logo-tagline">Connecting Farmers and Customers</span>
+      </div>
+      <nav class="navbar">
+        <a href="farmer-dashboard.html" class="nav-link active">Dashboard</a>
+        <a href="farmer-orders.html" class="nav-link">Manage Orders</a>
+        <a href="farmer-profile.html" class="nav-link">Profile</a>
+        <a href="Login.html" class="nav-link logout">Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>Welcome, Farmer John</h1>
+      <p>Manage your farm products and sales</p>
+    </div>
+
+    <!-- Sales Overview Cards -->
+    <section class="stats-section">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">💰</div>
+          <div class="stat-content">
+            <h3>Total Sales</h3>
+            <p class="stat-value">KSh 12,500</p>
+            <span class="stat-change positive">+15% this month</span>
+          </div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-icon">📦</div>
+          <div class="stat-content">
+            <h3>Items Sold</h3>
+            <p class="stat-value">85</p>
+            <span class="stat-change positive">+8 this week</span>
+          </div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-icon">🌱</div>
+          <div class="stat-content">
+            <h3>Products Listed</h3>
+            <p class="stat-value">23</p>
+            <span class="stat-change neutral">Active listings</span>
+          </div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-icon">👥</div>
+          <div class="stat-content">
+            <h3>Customers</h3>
+            <p class="stat-value">47</p>
+            <span class="stat-change positive">+3 new</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="quick-actions">
+      <h2>Quick Actions</h2>
+      <div class="actions-grid">
+        <a href="farmer-orders.html" class="action-card">
+          <div class="action-icon">📋</div>
+          <h3>Manage Orders</h3>
+          <p>View and update customer orders</p>
+        </a>
+        
+        <a href="#" class="action-card">
+          <div class="action-icon">📊</div>
+          <h3>Sales Report</h3>
+          <p>View detailed sales analytics</p>
+        </a>
+        
+        <a href="farmer-profile.html" class="action-card">
+          <div class="action-icon">⚙️</div>
+          <h3>Account Settings</h3>
+          <p>Update your profile information</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Recent Activity -->
+    <section class="recent-activity">
+      <h2>Recent Activity</h2>
+      <div class="activity-list">
+        <div class="activity-item">
+          <div class="activity-icon">🛒</div>
+          <div class="activity-content">
+            <h4>New Order Received</h4>
+            <p>Customer ordered 5kg of tomatoes</p>
+            <span class="activity-time">2 hours ago</span>
+          </div>
+        </div>
+        
+        <div class="activity-item">
+          <div class="activity-icon">✅</div>
+          <div class="activity-content">
+            <h4>Product Listed</h4>
+            <p>Fresh carrots added to marketplace</p>
+            <span class="activity-time">1 day ago</span>
+          </div>
+        </div>
+        
+        <div class="activity-item">
+          <div class="activity-icon">💰</div>
+          <div class="activity-content">
+            <h4>Payment Received</h4>
+            <p>KSh 850 from customer sale</p>
+            <span class="activity-time">2 days ago</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 FarmCo. All rights reserved.
+  </footer>
+</body>
+</html> 

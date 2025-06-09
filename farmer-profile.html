@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Profile - FarmCo</title>
+  <title>Farmer Profile - FarmCo</title>
   <link rel="stylesheet" href="profile.css" />
-  <script src="auth.js"></script>
 </head>
 <body>
   
@@ -14,15 +13,18 @@
       <div class="logo">FarmCo
         <span class="logo-tagline">Connecting Farmers and Customers</span>
       </div>
-      <nav class="navbar" id="roleBasedNav">
-        <!-- Navigation will be dynamically populated based on user role -->
+      <nav class="navbar">
+        <a href="farmer-dashboard.html" class="nav-link">Dashboard</a>
+        <a href="farmer-orders.html" class="nav-link">Manage Orders</a>
+        <a href="farmer-profile.html" class="nav-link active">Profile</a>
+        <a href="Login.html" class="nav-link logout">Logout</a>
       </nav>
     </div>
   </header>
 
   <main>
       <div class="page-header">
-        <h1>Profile</h1>
+        <h1>Farmer Profile</h1>
         <p>Manage your account information and settings</p>
       </div>
 
@@ -31,41 +33,40 @@
         <div class="profile-card">
           <h2>Personal Information</h2>
           
-          <form class="form" action="Profile.html" method="get">
+          <form class="form" action="farmer-profile.html" method="get">
             <div class="form-row">
               <div class="form-group">
                 <label for="fullName">Full Name</label>
-                <input type="text" id="fullName" name="fullName" required />
+                <input type="text" id="fullName" name="fullName" value="John Farmer" required />
               </div>
               
               <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" id="username" name="username" required />
+                <input type="text" id="username" name="username" value="johnfarmer" required />
               </div>
             </div>
             
             <div class="form-row">
               <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" required />
+                <input type="email" id="email" name="email" value="john@farmco.com" required />
               </div>
               
               <div class="form-group">
                 <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" />
+                <input type="tel" id="phone" name="phone" value="+254 700 123 456" />
               </div>
             </div>
             
             <div class="form-group">
               <label for="address">Address</label>
-              <textarea id="address" name="address" rows="3"></textarea>
+              <textarea id="address" name="address" rows="3">Nakuru County, Kenya</textarea>
             </div>
             
             <div class="form-group">
               <label for="accountType">Account Type</label>
               <select id="accountType" name="accountType" disabled>
-                <option value="farmer">Farmer</option>
-                <option value="customer">Customer</option>
+                <option value="farmer" selected>Farmer</option>
               </select>
               <small>Contact support to change account type</small>
             </div>
@@ -121,54 +122,5 @@
     &copy; 2025 FarmCo. All rights reserved.
   </footer>
 
-  <script>
-    // Set up navigation based on user role
-    document.addEventListener('DOMContentLoaded', function() {
-      const user = getCurrentUser();
-      const nav = document.getElementById('roleBasedNav');
-      
-      if (user) {
-        const isFarmer = user.role === 'farmer';
-        
-        // Set account type in the form
-        document.getElementById('accountType').value = user.role;
-        
-        // Set user information in the form
-        document.getElementById('fullName').value = user.name;
-        document.getElementById('email').value = user.email;
-        
-        // Create navigation based on role
-        const navLinks = [
-          {
-            href: isFarmer ? 'farmer-dashboard.html' : 'customer-dashboard.html',
-            text: 'Dashboard'
-          },
-          {
-            href: isFarmer ? 'farmer-orders.html' : 'view-products.html',
-            text: isFarmer ? 'Manage Orders' : 'View Products'
-          },
-          {
-            href: 'Profile.html',
-            text: 'Profile',
-            active: true
-          },
-          {
-            href: 'Login.html',
-            text: 'Logout',
-            class: 'logout'
-          }
-        ];
-        
-        // Add navigation links
-        navLinks.forEach(link => {
-          const a = document.createElement('a');
-          a.href = link.href;
-          a.textContent = link.text;
-          a.className = `nav-link${link.active ? ' active' : ''}${link.class ? ' ' + link.class : ''}`;
-          nav.appendChild(a);
-        });
-      }
-    });
-  </script>
 </body>
-</html>
+</html> 
